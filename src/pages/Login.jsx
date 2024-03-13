@@ -3,24 +3,39 @@ import { FaTwitter } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
-import { AxiosInstance } from "../api/api.tsx";
+import { AxiosInstance } from "../api/api.jsx";
 import { useDispatch } from "react-redux";
-import { sendLoginInfo } from "../store/slices/userSlice.tsx";
+import {loginData} from "../store/action/globalState.jsx";
 
 
 
 function Login() {
 
+    const dispatch = useDispatch();
+
     const{
         register,
         handleSubmit,
-        setValue,
+        setError,
         formState : {errors , isValid},
     } = useForm({mode:"onBlur"})
 
 
-    const submitHandler = () => {
+    const submitHandler = async (data) => {
+        try {
+            await AxiosInstance.post("/profile/login").then((res) => {
+                dispatch(loginData(data))
+            })
 
+        }
+        catch (error) {
+            console.log("Login failed" , error);
+
+            setError("username" , {
+                type:"manual",
+                message :"Invalid username or password",
+            })
+        }
     }
 
     return (
