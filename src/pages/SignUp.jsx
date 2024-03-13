@@ -111,10 +111,10 @@ function Signup() {
                   Lorem ipsum lorem ipsum{" "}
                 </p>
 
-                <div className={"flex gap-4"}>
+                <div className={"flex gap-4 mb-8"}>
                   <select
                     id={"month"}
-                    className={"w-1/2 border p-3 rounded-lg"}
+                    className={"w-1/2 border px-3 py-4 rounded-lg"}
                   >
                     <option disabled selected>
                       Month
@@ -132,7 +132,10 @@ function Signup() {
                     <option value={"november"}>November</option>
                     <option value={"december"}>December</option>
                   </select>
-                  <select id={"day"} className="w-1/4 border p-3 rounded-lg">
+                  <select
+                    id={"day"}
+                    className="w-1/4 border px-3 py-4 rounded-lg"
+                  >
                     <option disabled selected>
                       Day
                     </option>
@@ -145,7 +148,10 @@ function Signup() {
                     <option value={"sunday"}>Sunday</option>
                   </select>
 
-                  <select id={"year"} className="w-1/4 border p-3 rounded-lg">
+                  <select
+                    id={"year"}
+                    className="w-1/4 border px-3 py-4 rounded-lg"
+                  >
                     <option disabled selected>
                       Year
                     </option>
