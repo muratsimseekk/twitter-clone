@@ -35,7 +35,9 @@ import tweetstats from "../assets/homepage/tweetstats.png";
 import kebab from "../assets/homepage/kebab.png";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosMore } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 function HomePage() {
+  const navigate = useNavigate();
   return (
     <div className={"w-full flex my-10"}>
       <div
@@ -69,7 +71,12 @@ function HomePage() {
               <CiViewList size={"25px"} />
               <p className="text-lg">Lists</p>
             </div>
-            <div className="flex gap-5 items-center">
+            <div
+              className="flex gap-5 items-center hover:cursor-pointer"
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
               <CiUser size={"25px"} />
               <p className="text-lg">Profile</p>
             </div>
@@ -80,6 +87,16 @@ function HomePage() {
             <button className={"bg-[#1DA1F2] text-white py-2.5 rounded-3xl"}>
               Tweet
             </button>
+          </div>
+          <div className={"flex  w-[230px] gap-2 "}>
+            <img className={"w-[40px]"} src={profile1} />
+            <div className="flex flex-col w-full">
+              <div className={"flex justify-between w-full"}>
+                <h4 className={"text-sm font-medium"}>Bobur</h4>
+                <IoIosMore size={"20px"} />
+              </div>
+              <p className={"text-slate-500 text-sm"}>@bobur_mavlonov</p>
+            </div>
           </div>
         </div>
       </div>

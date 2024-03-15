@@ -10,30 +10,38 @@ import {
 } from "react-icons/ci";
 import { GoArrowLeft, GoBell } from "react-icons/go";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { PiBookmarkSimple, PiCopyrightLight } from "react-icons/pi";
+import { PiBookmarkSimple } from "react-icons/pi";
 
 import background from "../assets/profile/background.png";
 import profile from "../assets/profile/profile1.png";
 import born from "../assets/profile/born.png";
 import tweetPhoto from "../assets/profile/tweetphoto.png";
 
-import profile2 from "../assets/homepage/profile2.png";
+import media1 from "../assets/profile/media1.png";
+import media2 from "../assets/profile/media2.png";
+import media3 from "../assets/profile/media3.png";
+import media4 from "../assets/profile/media4.png";
+import media5 from "../assets/profile/media5.png";
+import media6 from "../assets/profile/media5.png";
+
 import comment from "../assets/homepage/comment.png";
 import retweet from "../assets/homepage/retweet.png";
 import like from "../assets/homepage/like.png";
 import share from "../assets/homepage/share.png";
 import tweetstats from "../assets/homepage/tweetstats.png";
-import profile3 from "../assets/homepage/profile3.png";
-import profile4 from "../assets/homepage/profile4.png";
-import kebab from "../assets/homepage/kebab.png";
+
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosLink, IoIosMore } from "react-icons/io";
 import profile5 from "../assets/homepage/profile5.png";
 import profile6 from "../assets/homepage/profile6.png";
 import { SlCalender } from "react-icons/sl";
 import { VscPinned } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
+import profile1 from "../assets/homepage/profile1.png";
 
 function Profile() {
+  const navigate = useNavigate();
+
   return (
     <div className={"w-full flex my-10"}>
       <div
@@ -42,7 +50,12 @@ function Profile() {
         <div className={"w-[60%] flex flex-col gap-8 h-max"}>
           <FaTwitter color={"#1DA1F2"} size={"35px"} />
           <div className="flex flex-col gap-5">
-            <div className="flex gap-5 items-center">
+            <div
+              className="flex gap-5 items-center hover:cursor-pointer "
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <BiSolidHomeCircle size={"25px"} />
               <p className="text-lg">Home</p>
             </div>
@@ -79,11 +92,26 @@ function Profile() {
               Tweet
             </button>
           </div>
+          <div className={"flex  w-[230px] gap-2 "}>
+            <img className={"w-[40px]"} src={profile1} />
+            <div className="flex flex-col w-full">
+              <div className={"flex justify-between w-full"}>
+                <h4 className={"text-sm font-medium"}>Bobur</h4>
+                <IoIosMore size={"20px"} />
+              </div>
+              <p className={"text-slate-500 text-sm"}>@bobur_mavlonov</p>
+            </div>
+          </div>
         </div>
       </div>
       <div className={"w-1/2"}>
         <div className="flex items-center  border-b-[1px] p-3 w-full gap-7">
-          <GoArrowLeft size={"25px"} />
+          <GoArrowLeft
+            size={"25px"}
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <div className={"flex flex-col justify-between "}>
             <h2 className="text-lg font-semibold">Bobur</h2>
             <p className={"text-xs font-extralight"}>1,070 Tweets</p>
@@ -301,42 +329,13 @@ function Profile() {
             />
             <CiSearch className={"absolute top-2.5 left-3.5"} />
           </div>
-          <div className={" flex flex-col gap-5 py-5 rounded-lg bg-slate-100"}>
-            <div className={"flex justify-between items-center"}>
-              <h3>Trends for you </h3>
-              <IoSettingsOutline />
-            </div>
-            <div className={"flex justify-between"}>
-              <div className={"flex flex-col gap-1"}>
-                <p className={"text-xs"}>Trending in Germany</p>
-                <h4 className={"text-base"}>Revolution</h4>
-                <p className={"text-xs"}>50.4K Tweets</p>
-              </div>
-              <IoIosMore size={"20px"} />
-            </div>
-            <div className={"flex justify-between"}>
-              <div className={"flex flex-col gap-1"}>
-                <p className={"text-xs"}>Trending in Germany</p>
-                <h4 className={"text-base"}>Revolution</h4>
-                <p className={"text-xs"}>50.4K Tweets</p>
-              </div>
-              <IoIosMore size={"20px"} />
-            </div>
-            <div className={"flex justify-between"}>
-              <div className={"flex flex-col gap-1"}>
-                <p className={"text-xs"}>Trending in Germany</p>
-                <h4 className={"text-base"}>Revolution</h4>
-                <p className={"text-xs"}>50.4K Tweets</p>
-              </div>
-              <IoIosMore size={"20px"} />
-            </div>
-            <p
-              className={
-                "text-sm text-[#1DA1F2] hover:cursor-pointer hover:underline"
-              }
-            >
-              Show more
-            </p>
+          <div className={"flex flex-wrap justify-between"}>
+            <img className={"w-[33%]"} src={media1} />
+            <img className={"w-[33%]"} src={media2} />
+            <img className={"w-[33%]"} src={media3} />
+            <img className={"w-[33%]"} src={media4} />
+            <img className={"w-[33%]"} src={media5} />
+            <img className={"w-[33%]"} src={media6} />
           </div>
           <div className={"flex flex-col gap-5 py-5 rounded-lg bg-slate-100"}>
             <h3>You might like</h3>
@@ -380,31 +379,42 @@ function Profile() {
               Show more
             </p>
           </div>
-          <div className={" flex flex-wrap gap-2"}>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              Terms of Service
-            </p>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              Privacy Policy
-            </p>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              Cookie Policy
-            </p>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              Imprint
-            </p>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              Ads Info
-            </p>
-            <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-              More...
-            </p>
-            <div className={"flex items-center gap-0.5"}>
-              <PiCopyrightLight />
-              <p className={"text-[10px] hover:underline hover:cursor-pointer"}>
-                2021 Twitter,Inc.
-              </p>
+          <div className={" flex flex-col gap-5 py-5 rounded-lg bg-slate-100"}>
+            <div className={"flex justify-between items-center"}>
+              <h3>Trends for you </h3>
+              <IoSettingsOutline />
             </div>
+            <div className={"flex justify-between"}>
+              <div className={"flex flex-col gap-1"}>
+                <p className={"text-xs"}>Trending in Germany</p>
+                <h4 className={"text-base"}>Revolution</h4>
+                <p className={"text-xs"}>50.4K Tweets</p>
+              </div>
+              <IoIosMore size={"20px"} />
+            </div>
+            <div className={"flex justify-between"}>
+              <div className={"flex flex-col gap-1"}>
+                <p className={"text-xs"}>Trending in Germany</p>
+                <h4 className={"text-base"}>Revolution</h4>
+                <p className={"text-xs"}>50.4K Tweets</p>
+              </div>
+              <IoIosMore size={"20px"} />
+            </div>
+            <div className={"flex justify-between"}>
+              <div className={"flex flex-col gap-1"}>
+                <p className={"text-xs"}>Trending in Germany</p>
+                <h4 className={"text-base"}>Revolution</h4>
+                <p className={"text-xs"}>50.4K Tweets</p>
+              </div>
+              <IoIosMore size={"20px"} />
+            </div>
+            <p
+              className={
+                "text-sm text-[#1DA1F2] hover:cursor-pointer hover:underline"
+              }
+            >
+              Show more
+            </p>
           </div>
         </div>
       </div>
