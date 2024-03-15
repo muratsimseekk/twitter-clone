@@ -15,6 +15,7 @@ import { PiBookmarkSimple, PiCopyrightLight } from "react-icons/pi";
 import background from "../assets/profile/background.png";
 import profile from "../assets/profile/profile1.png";
 import born from "../assets/profile/born.png";
+import tweetPhoto from "../assets/profile/tweetphoto.png";
 
 import profile2 from "../assets/homepage/profile2.png";
 import comment from "../assets/homepage/comment.png";
@@ -30,6 +31,7 @@ import { IoIosLink, IoIosMore } from "react-icons/io";
 import profile5 from "../assets/homepage/profile5.png";
 import profile6 from "../assets/homepage/profile6.png";
 import { SlCalender } from "react-icons/sl";
+import { VscPinned } from "react-icons/vsc";
 
 function Profile() {
   return (
@@ -103,7 +105,7 @@ function Profile() {
                 Edit profile
               </button>
             </div>
-            <div className={" w-full py-2 pl-6 flex flex-col gap-3"}>
+            <div className={" w-full pt-2  pl-6 flex flex-col gap-3"}>
               <div className={"flex flex-col "}>
                 <h3 className={"text-lg font-extrabold"}>Bobur</h3>
                 <p className="text-xs font-light text-slate-500">
@@ -154,107 +156,134 @@ function Profile() {
                   </p>
                 </div>
               </div>
+              <div className="flex justify-between px-6">
+                <h4 className="text-sm font-bold border-b-4 w-max pt-4 pb-2 border-[#1DA1F2]">
+                  Tweets
+                </h4>
+
+                <h4 className="text-sm w-max pt-4 pb-2 ">Tweets & Replies</h4>
+
+                <h4 className="text-sm w-max pt-4 pb-2 ">Media</h4>
+
+                <h4 className="text-sm w-max pt-4 pb-2 ">Likes</h4>
+              </div>
             </div>
           </div>
         </div>
-        <div className=" p-3 flex gap-4 border-b-[1px]">
+        <div className={"flex flex-col"}>
+          <div className={"flex pl-16 pt-4 items-center gap-2.5"}>
+            <VscPinned size={"18px"} />
+            <p className={"text-sm font text-slate-800"}>Pinned Tweet</p>
+          </div>
+          <div className=" pl-3 pt-1.5 pb-4 flex gap-4 border-b-[1px]">
+            <div className={"w-[10%]"}>
+              <img className={"w-full"} src={profile} />
+            </div>
+            <div className="flex flex-col gap-0.5 w-[85%] ">
+              <div className={"flex justify-between"}>
+                <div className={"flex gap-1 items-center"}>
+                  <p className="font-bold">Bobur</p>
+                  <p className={"text-sm"}>@bobur_mavlonov</p>
+                  <p className={"text-xs"}>-</p>
+                  <p className={"text-sm"}>Apr 1</p>
+                </div>
+                <IoIosMore size={"28px"} />
+              </div>
+              <p className={"text-sm"}>
+                4-kursni tugatgunimcha kamida bitta biznesim bo'loshini,uylanish
+                uchun moddiy jihatdan to'la-to'kis tayyor bo'lishni,sog'lik va
+                jismoniy holatni normallashtrishini reja qildim
+              </p>
+              <div className="flex gap-12 pt-3">
+                <div className="flex gap-2 items-center">
+                  <img src={comment} />
+                  <p>10</p>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <img src={retweet} />
+                  <p>1</p>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <img src={like} />
+                  <p>8</p>
+                </div>
+                <img src={share} />
+                <img src={tweetstats} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" pl-3 pt-1.5 pb-4 flex gap-4 border-b-[1px]">
           <div className={"w-[10%]"}>
-            <img className={"w-full"} src={profile2} />
+            <img className={"w-full"} src={profile} />
           </div>
-          <div className="flex flex-col gap-2 w-[85%] ">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">Designsta</p>
-              <p className={"text-sm"}>@inner</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>25m</p>
+          <div className="flex flex-col gap-0.5 w-[85%] ">
+            <div className={"flex justify-between"}>
+              <div className={"flex gap-1 items-center"}>
+                <p className="font-bold">Bobur</p>
+                <p className={"text-sm"}>@bobur_mavlonov</p>
+                <p className={"text-xs"}>-</p>
+                <p className={"text-sm"}>Apr 1</p>
+              </div>
+              <IoIosMore size={"28px"} />
             </div>
             <p className={"text-sm"}>
-              Twitterdagi ayol-erkak qarama -qarshiliginglardan o'zinglar
-              zerikmadinglarmi?
+              Bizda shunaqa bir illat bor: gap bo'lsa bo'ldi , nima
+              deyayotganimizha qarab ham o'tirmaymiz.
+              <br /> Bitta biznes trener nito gapirib qo'ysa , hamma biznes
+              trenerlar yomonga chiqadi slishkom aqli odamlar nazdida.
+              <br />
+              Gap faqat biznes trenerlar haqida emas.
             </p>
             <div className="flex gap-12 pt-3">
               <div className="flex gap-2 items-center">
                 <img src={comment} />
-                <p>10</p>
+                <p></p>
               </div>
-
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center text-green-400">
                 <img src={retweet} />
-                <p>1</p>
+                <p className={"text-slate-500"}>5</p>
               </div>
-
               <div className="flex gap-2 items-center">
                 <img src={like} />
-                <p>8</p>
+                <p className={"text-red-600"}>9</p>
               </div>
               <img src={share} />
               <img src={tweetstats} />
             </div>
           </div>
         </div>
-        <div className=" p-3 flex gap-4 border-b-[1px] w-full">
-          <div className={"w-[10%] "}>
-            <img className={"w-full"} src={profile3} />
+        <div className=" pl-3 pt-1.5 pb-4 flex gap-4 border-b-[1px]">
+          <div className={"w-[10%]"}>
+            <img className={"w-full"} src={profile} />
           </div>
-          <div className="flex flex-col gap-2 w-[85%]">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">cloutexhibition</p>
-              <p className={"text-sm"}>@RajLahoti</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>22m</p>
+          <div className="flex flex-col gap-0.5 w-[85%] ">
+            <div className={"flex justify-between"}>
+              <div className={"flex gap-1 items-center"}>
+                <p className="font-bold">Bobur</p>
+                <p className={"text-sm"}>@bobur_mavlonov</p>
+                <p className={"text-xs"}>-</p>
+                <p className={"text-sm"}>Apr 1</p>
+              </div>
+              <IoIosMore size={"28px"} />
             </div>
-            <p className={"text-sm"}>
-              YPIP dasturining bu yilgi sezoni ham o'z nihoyasiga yetmoqda .
-              Mentorlik davomida talaba va yangi bitiruvcihilarni o'sayotganini
-              ko'rib hursand bo'ladi odam.
-            </p>
+            <p className={"text-sm"}>A bo'pti maskamasman</p>
+            <img className={"w-5/6 pt-2"} src={tweetPhoto} />
             <div className="flex gap-12 pt-3">
               <div className="flex gap-2 items-center">
                 <img src={comment} />
-                <p>10</p>
+                <p className={"text-slate-500"}>10</p>
               </div>
-
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center text-green-400">
                 <img src={retweet} />
-                <p>5</p>
+                <p className={"text-slate-500"}>5</p>
               </div>
-
               <div className="flex gap-2 items-center">
                 <img src={like} />
-                <p>9</p>
-              </div>
-              <img src={share} />
-              <img src={tweetstats} />
-            </div>
-          </div>
-        </div>
-        <div className=" p-3 flex gap-4 border-b-[1px] w-full">
-          <div className={"w-[10%] "}>
-            <img className={"w-full"} src={profile4} />
-          </div>
-          <div className="flex flex-col gap-2 w-[85%]">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">CreativePhoto</p>
-              <p className={"text-sm"}>@cloutexhibition</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>1h</p>
-            </div>
-            <p className={"text-sm"}>Some russian words for kebabs</p>
-            <img src={kebab} />
-            <div className="flex gap-12 pt-3">
-              <div className="flex gap-2 items-center">
-                <img src={comment} />
-                <p>10</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={retweet} />
-                <p>5</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={like} />
-                <p>9</p>
+                <p className={"text-slate-500"}>8</p>
               </div>
               <img src={share} />
               <img src={tweetstats} />
