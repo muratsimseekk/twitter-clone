@@ -3,13 +3,46 @@ import { FaApple, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdCopyright } from "react-icons/md";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { data } from "autoprefixer";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { singUpData } from "../store/action/globalState.jsx";
 
 function Signup() {
   const [popup, setPopup] = useState(false);
 
   const [mailInput, setMailInput] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isValid },
+  } = useForm({ mode: "onBlur" });
+
+  const submitHandler = async (data) => {
+    try {
+      await axios
+        .post("http://localhost:3000/profile/register", data)
+        .then((res) => {
+          console.log(res.data);
+          dispatch(singUpData(data));
+          navigate("/");
+        });
+    } catch (error) {
+      console.log("Login failed ", error);
+      setError("username", {
+        type: "manual",
+        message: error.response.data.message,
+      });
+    }
+  };
 
   return (
     <div className="w-full  h-[100vh] flex flex-col">
@@ -66,12 +99,36 @@ function Signup() {
               <h2 className="text-2xl font-semibold tracking-wide">
                 Create an Account
               </h2>
-              <form className={"flex flex-col gap-3"}>
-                <input
-                  className={"p-3 border border-slate-400 rounded-md"}
-                  type={"text"}
-                  placeholder={"Name"}
-                />
+              <form
+                onSubmit={handleSubmit(submitHandler)}
+                className={"flex flex-col gap-3"}
+              >
+                <div className={"w-full flex flex-col"}>
+                  <input
+                    {...register("username", {
+                      required: "Username is required ",
+                    })}
+                    className={"p-3 border w-full border-slate-400 rounded-md"}
+                    type={"text"}
+                    placeholder={"Username"}
+                  />
+                  <p className="text-red-500 text-sm pl-2 ">
+                    {errors.username?.message}
+                  </p>
+                </div>
+                <div className={"w-full flex flex-col "}>
+                  <input
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
+                    className={"p-3 border w-full border-slate-400 rounded-md"}
+                    type={"password"}
+                    placeholder={"Password"}
+                  />
+                  <p className="text-red-500 text-sm pl-2">
+                    {errors.password?.message}
+                  </p>
+                </div>
                 {!mailInput ? (
                   <>
                     {" "}
@@ -90,10 +147,18 @@ function Signup() {
                   </>
                 ) : (
                   <>
-                    <input
-                      className={"p-3 border border-slate-400 rounded-md"}
-                      placeholder={"Email Address"}
-                    />
+                    <div className="w-full flex flex-col">
+                      <input
+                        {...register("email", {
+                          required: "Email is required",
+                        })}
+                        className={"p-3 border border-slate-400 rounded-md"}
+                        placeholder={"Email Address"}
+                      />
+                      <p className="text-red-500 text-sm pl-2">
+                        {errors.email?.message}
+                      </p>
+                    </div>
                     <p
                       className={
                         "text-[#1DA1F2] text-sm py-3 hover:cursor-pointer hover:underline w-max"
@@ -104,6 +169,7 @@ function Signup() {
                     </p>{" "}
                   </>
                 )}
+
                 <h4 className="font-bold">Date of Birth</h4>
                 <p className={"text-sm text-slate-600"}>
                   Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum
@@ -116,9 +182,7 @@ function Signup() {
                     id={"month"}
                     className={"w-1/2 border px-3 py-4 rounded-lg"}
                   >
-                    <option disabled selected>
-                      Month
-                    </option>
+                    <option disabled>Month</option>
                     <option value={"january"}>January</option>
                     <option value={"february"}>February</option>
                     <option value={"march"}>March</option>
@@ -136,9 +200,7 @@ function Signup() {
                     id={"day"}
                     className="w-1/4 border px-3 py-4 rounded-lg"
                   >
-                    <option disabled selected>
-                      Day
-                    </option>
+                    <option disabled>Day</option>
                     <option value={"monday"}>Monday</option>
                     <option value={"tuesday"}>Tuesday</option>
                     <option value={"wednesday"}>Wednesday</option>
@@ -152,9 +214,7 @@ function Signup() {
                     id={"year"}
                     className="w-1/4 border px-3 py-4 rounded-lg"
                   >
-                    <option disabled selected>
-                      Year
-                    </option>
+                    <option disabled>Year</option>
                     <option value={""}>1990</option>
                     <option value={""}>1991</option>
                     <option value={""}>1992</option>

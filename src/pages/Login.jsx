@@ -53,7 +53,7 @@ function Login() {
             <input
               type="text"
               {...register("username", {
-                required: "Name is required !",
+                required: "Username is required !",
               })}
               className={"w-full px-4 py-3 rounded-lg border border-slate-300"}
               placeholder={"Username"}
