@@ -37,7 +37,30 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosMore } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import LeftSide from "./LeftSide.jsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { tweetData } from "../store/action/globalState.jsx";
 function HomePage() {
+  const dispatch = useDispatch();
+
+  const tweets = useSelector((state) => state.global.tweets);
+  const fetchTweets = async () => {
+    try {
+      await axios.get("http://localhost:3000/tweet/").then((res) => {
+        dispatch(tweetData(res.data.data));
+      });
+    } catch (error) {
+      console.log("An error occured while fetching data :", error);
+    } finally {
+      console.log(tweets);
+    }
+  };
+
+  useEffect(() => {
+    fetchTweets();
+  }, []);
+
   return (
     <div className={"w-full flex my-10"}>
       <LeftSide />
@@ -75,110 +98,40 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className=" p-3 flex gap-4 border-b-[1px]">
-          <div className={"w-[10%]"}>
-            <img className={"w-full"} src={profile2} />
-          </div>
-          <div className="flex flex-col gap-2 w-[85%] ">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">Designsta</p>
-              <p className={"text-sm"}>@inner</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>25m</p>
+        {tweets?.map((tweet, i) => (
+          <div key={i} className=" p-3 flex gap-4 border-b-[1px]">
+            <div className={"w-[10%]"}>
+              <img className={"w-full"} src={profile2} />
             </div>
-            <p className={"text-sm"}>
-              Twitterdagi ayol-erkak qarama -qarshiliginglardan o'zinglar
-              zerikmadinglarmi?
-            </p>
-            <div className="flex gap-12 pt-3">
-              <div className="flex gap-2 items-center">
-                <img src={comment} />
-                <p>10</p>
+            <div className="flex flex-col gap-2 w-[85%] ">
+              <div className={"flex gap-1 items-center"}>
+                <p className="font-bold">{tweet?.username}</p>
+                <p className={"text-sm"}>@inner</p>
+                <p className={"text-xs"}>-</p>
+                <p className={"text-sm"}>25m</p>
               </div>
+              <p className={"text-sm"}>{tweet?.content}</p>
+              <div className="flex gap-12 pt-3">
+                <div className="flex gap-2 items-center">
+                  <img src={comment} />
+                  <p>{tweet?.replies.length}</p>
+                </div>
 
-              <div className="flex gap-2 items-center">
-                <img src={retweet} />
-                <p>1</p>
-              </div>
+                <div className="flex gap-2 items-center">
+                  <img src={retweet} />
+                  <p>{tweet?.retweets}</p>
+                </div>
 
-              <div className="flex gap-2 items-center">
-                <img src={like} />
-                <p>8</p>
+                <div className="flex gap-2 items-center">
+                  <img src={like} />
+                  <p>{tweet?.likes}</p>
+                </div>
+                <img src={share} />
+                <img src={tweetstats} />
               </div>
-              <img src={share} />
-              <img src={tweetstats} />
-            </div>
-          </div>
-        </div>
-        <div className=" p-3 flex gap-4 border-b-[1px] w-full">
-          <div className={"w-[10%] "}>
-            <img className={"w-full"} src={profile3} />
-          </div>
-          <div className="flex flex-col gap-2 w-[85%]">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">cloutexhibition</p>
-              <p className={"text-sm"}>@RajLahoti</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>22m</p>
-            </div>
-            <p className={"text-sm"}>
-              YPIP dasturining bu yilgi sezoni ham o'z nihoyasiga yetmoqda .
-              Mentorlik davomida talaba va yangi bitiruvcihilarni o'sayotganini
-              ko'rib hursand bo'ladi odam.
-            </p>
-            <div className="flex gap-12 pt-3">
-              <div className="flex gap-2 items-center">
-                <img src={comment} />
-                <p>10</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={retweet} />
-                <p>5</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={like} />
-                <p>9</p>
-              </div>
-              <img src={share} />
-              <img src={tweetstats} />
             </div>
           </div>
-        </div>
-        <div className=" p-3 flex gap-4 border-b-[1px] w-full">
-          <div className={"w-[10%] "}>
-            <img className={"w-full"} src={profile4} />
-          </div>
-          <div className="flex flex-col gap-2 w-[85%]">
-            <div className={"flex gap-1 items-center"}>
-              <p className="font-bold">CreativePhoto</p>
-              <p className={"text-sm"}>@cloutexhibition</p>
-              <p className={"text-xs"}>-</p>
-              <p className={"text-sm"}>1h</p>
-            </div>
-            <p className={"text-sm"}>Some russian words for kebabs</p>
-            <img src={kebab} />
-            <div className="flex gap-12 pt-3">
-              <div className="flex gap-2 items-center">
-                <img src={comment} />
-                <p>10</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={retweet} />
-                <p>5</p>
-              </div>
-
-              <div className="flex gap-2 items-center">
-                <img src={like} />
-                <p>9</p>
-              </div>
-              <img src={share} />
-              <img src={tweetstats} />
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="w-1/4 border-l-[1px] flex pl-6">
         <div className={"w-[80%] flex flex-col gap-8"}>

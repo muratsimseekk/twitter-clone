@@ -33,7 +33,7 @@ function Login() {
 
       setError("username", {
         type: "manual",
-        message: "Invalid username or password",
+        message: error.response.data.message,
       });
     }
   };

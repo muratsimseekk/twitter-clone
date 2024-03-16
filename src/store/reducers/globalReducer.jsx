@@ -1,4 +1,9 @@
-import { LOGGED_IN, LOGIN_DATA, SIGN_UP_DATA } from "../action/globalState.jsx";
+import {
+  LOGGED_IN,
+  LOGIN_DATA,
+  SIGN_UP_DATA,
+  TWEET_DATA,
+} from "../action/globalState.jsx";
 
 const initialValues = {
   user: {
@@ -6,6 +11,7 @@ const initialValues = {
     username: "",
     email: "",
   },
+  tweets: [],
 };
 
 export const globalReducer = (state = initialValues, action) => {
@@ -29,6 +35,12 @@ export const globalReducer = (state = initialValues, action) => {
           email: action.payload.email,
         },
       };
+    case TWEET_DATA:
+      return {
+        ...state,
+        tweets: action.payload,
+      };
+
     default:
       return state;
   }
